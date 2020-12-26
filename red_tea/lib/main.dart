@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
+//import 'package:provider/provider.dart';
 import 'package:red_tea/models/user.dart';
 import 'package:red_tea/screens/wrapper.dart';
 import 'package:firebase_core/firebase_core.dart';
@@ -16,15 +16,15 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return StreamProvider<UserGet>.value(
-      value: AuthService().user,
-      child: MaterialApp(
+    // return StreamProvider<UserGet>.value(
+    //   value: AuthService().user,
+      return MaterialApp(
           home: FutureBuilder(
             future: _fbApp,
             builder: (context, snapshot){
               if (snapshot.hasError){
                 print("You Have an Error! ${snapshot.error.toString()}");
-                return Text('Somthing went Wrong!');
+                return Text('Something went Wrong!');
               } else if (snapshot.hasData){
                 return Wrapper();
               } else {
@@ -34,7 +34,7 @@ class MyApp extends StatelessWidget {
               }
             },
           )
-      ),
-    );
+      );
+    // );
   }
 }
