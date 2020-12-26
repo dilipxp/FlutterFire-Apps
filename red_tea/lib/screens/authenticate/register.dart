@@ -1,12 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:red_tea/services/auth.dart';
 
-class SignIn extends StatefulWidget {
+
+class Register extends StatefulWidget {
   @override
-  _SignInState createState() => _SignInState();
+  _RegisterState createState() => _RegisterState();
 }
 
-class _SignInState extends State<SignIn> {
+class _RegisterState extends State<Register> {
+
   final AuthService _auth = AuthService();
 
   // Test Field States
@@ -20,22 +22,34 @@ class _SignInState extends State<SignIn> {
       appBar: AppBar(
         backgroundColor: Colors.red[400],
         elevation: 0.0,
-        title: Text('Sgin in to Red Tea'),
+        title: Text('Sign up for RedTea (OWNER)'),
       ),
       body: Container(
         padding: EdgeInsets.symmetric(vertical: 20.0, horizontal: 50.0),
         child: Form(
           child: Column(
             children: <Widget>[
+              Text('For Owners Only'),
+
               SizedBox(height: 20,),
-              TextFormField(
-                onChanged: (val) {
-                  setState(() => email = val );
-                }
+              TextFormField(                                  // For Email
+                  decoration: const InputDecoration(
+                    icon: Icon(Icons.email),
+                    hintText: 'example@gmail.com',
+                    labelText: 'Email *',
+                  ),
+                  onChanged: (val) {
+                    setState(() => email = val );
+                  }
               ),
               SizedBox(height: 20,),
-              TextFormField(
-                obscureText: true,
+              TextFormField(                                     // For Password
+                  decoration: const InputDecoration(
+                    icon: Icon(Icons.lock),
+                    hintText: 'Keep Password safe!',
+                    labelText: 'Password *',
+                  ),
+                  obscureText: true,
                   onChanged: (val) {
                     setState(() => password = val );
                   }
@@ -46,7 +60,7 @@ class _SignInState extends State<SignIn> {
               RaisedButton(
                 color: Colors.pink[400],
                 child: Text(
-                  'Sign In',
+                  'Register',
                   style: TextStyle(color: Colors.white),
                 ),
                 onPressed: () async{
@@ -54,25 +68,6 @@ class _SignInState extends State<SignIn> {
                   print(password);
                 },
               ),
-
-              // for Reservation
-              SizedBox(height: 20,),
-              RaisedButton(
-                color: Colors.green[400],
-                child: Text(
-                  'Make Reservation',
-                  style: TextStyle(color: Colors.white),
-                ),
-                onPressed: () async {
-                  dynamic result = await _auth.signInAnon();
-                  if (result == null) {
-                    print("Error in Sign in");
-                  } else {
-                    print("Customer Signed In");
-                    print(result.uid);
-                  }
-                }
-              )
             ],
           ),
         ),
