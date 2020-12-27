@@ -1,17 +1,22 @@
 import 'package:flutter/material.dart';
+// import 'package:red_tea/services/auth.dart';
+import 'package:red_tea/screens/authenticate/sign-in.dart';
+import 'package:red_tea/shared/constant.dart';
 
 
 class Reservation extends StatefulWidget {
+
   @override
   _ReservationState createState() => _ReservationState();
 }
 
 class _ReservationState extends State<Reservation> {
 
-  // final AuthService _auth = AuthService();
+   // final AuthService _auth = AuthService();
 
   // Test Field States
   String email = '', name = '', phone = '', familySize = '', date = '', time = '';
+
 
 
   @override
@@ -19,9 +24,18 @@ class _ReservationState extends State<Reservation> {
     return Scaffold(
       backgroundColor: Colors.brown[100],
       appBar: AppBar(
-        backgroundColor: Colors.red[400],
+        backgroundColor: Colors.green[400],
         elevation: 0.0,
         title: Text('Make Reservation'),
+        actions: <Widget>[
+          FlatButton.icon(
+            icon: Icon(Icons.person),
+            label: Text('Sign in'),
+            onPressed: (){
+                      return  SignIn();                  // Go Back to Sign-in Screen
+              },
+          )
+        ],
       ),
       body: Container(
         padding: EdgeInsets.symmetric(vertical: 20.0, horizontal: 50.0),
@@ -30,11 +44,11 @@ class _ReservationState extends State<Reservation> {
           Form(
               child: Column(
               children: <Widget>[
-                Text('Fill the fields'),
+                Text('Fill the fields to make an reservation!'),
 
                 SizedBox(height: 20,),
                 TextFormField(                              // For Email
-                    decoration: const InputDecoration(
+                    decoration: textInputDecorationReservation.copyWith(
                       icon: Icon(Icons.email),
                       hintText: 'eample@gmail.com',
                       labelText: 'Email *',
@@ -45,7 +59,7 @@ class _ReservationState extends State<Reservation> {
                 ),
                 SizedBox(height: 20,),
                 TextFormField(                            // For Name
-                    decoration: const InputDecoration(
+                    decoration: textInputDecorationReservation.copyWith(
                       icon: Icon(Icons.person),
                       hintText: 'Dilip Singh',
                       labelText: 'Name *',
@@ -57,12 +71,11 @@ class _ReservationState extends State<Reservation> {
 
                 SizedBox(height: 20,),
                 TextFormField(                               // For Phone
-                    decoration: const InputDecoration(
+                    decoration: textInputDecorationReservation.copyWith(
                       icon: Icon(Icons.phone),
                       hintText: 'Type Your Mobile Number',
                       labelText: 'Phone *',
                     ),
-                    obscureText: true,
                     onChanged: (val) {
                       setState(() => phone = val );
                     }
@@ -70,12 +83,11 @@ class _ReservationState extends State<Reservation> {
 
                 SizedBox(height: 20,),
                 TextFormField(                                   // For Size of Family
-                    decoration: const InputDecoration(
+                    decoration: textInputDecorationReservation.copyWith(
                       icon: Icon(Icons.family_restroom),
                       hintText: 'How many people?',
                       labelText: 'Family size *',
                     ),
-                    obscureText: true,
                     onChanged: (val) {
                       setState(() => familySize = val );
                     }
@@ -83,12 +95,11 @@ class _ReservationState extends State<Reservation> {
 
                 SizedBox(height: 20,),
                 TextFormField(                               // For Date
-                    decoration: const InputDecoration(
+                    decoration: textInputDecorationReservation.copyWith(
                       icon: Icon(Icons.date_range),
                       hintText: 'DD-MM-YYYY',
                       labelText: 'Date *',
                     ),
-                    obscureText: true,
                     onChanged: (val) {
                       setState(() => date = val );
                     }
@@ -96,23 +107,22 @@ class _ReservationState extends State<Reservation> {
 
                 SizedBox(height: 20,),
                 TextFormField(                               // For Time
-                    decoration: const InputDecoration(
+                    decoration: textInputDecorationReservation.copyWith(
                       icon: Icon(Icons.timelapse),
-                      hintText: '4:30 PM',
+                      hintText: 'Example:4:30 PM',
                       labelText: 'Time *',
                     ),
-                    obscureText: true,
                     onChanged: (val) {
                       setState(() => time = val );
                     }
                 ),
 
                 // for Owner
-                SizedBox(height: 20,),
+                SizedBox(height: 50,),
                 RaisedButton(
-                  color: Colors.pink[400],
+                  color: Colors.green[400],
                   child: Text(
-                    'Register',
+                    'Submit',
                     style: TextStyle(color: Colors.white),
                   ),
                   onPressed: () async{

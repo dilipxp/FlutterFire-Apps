@@ -3,8 +3,11 @@ import 'package:red_tea/screens/authenticate/authenticate.dart';
 import 'package:red_tea/models/user.dart';
 import 'package:provider/provider.dart';
 import 'package:red_tea/screens/home/home.dart';
+import 'package:red_tea/screens/reservation/reservation.dart';
+import 'package:red_tea/screens/home/owner.dart';
 
 class Wrapper extends StatelessWidget {
+
   @override
   Widget build(BuildContext context) {
 
